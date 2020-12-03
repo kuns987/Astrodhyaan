@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage 
+             xmlns:controls="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Astrodhyaan.Views.Forms.UserAccount"
+            xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+            xmlns:ci="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+    <NavigationPage.TitleView>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <WebView HorizontalOptions="Start" VerticalOptions="FillAndExpand" Grid.Column="0" x:Name="webViewGIF" BackgroundColor="#fef4e1" Margin="-20,2,0,0"  Source="http://astrodhaam.com/demo/index.html"  
+            WidthRequest="70" HeightRequest="60">
+            </WebView>
+            <Label Grid.ColumnSpan="3" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Text="My Account" TextColor="DarkGray" FontSize="18" Margin="-20,0,0,0" FontAttributes="Bold"></Label>
+
+        </Grid>
+    </NavigationPage.TitleView>
+    <!--Pages can be added as references or inline-->
+    <TabbedPage.Children>
+        <controls:AnimationPage Title="My Profile" WidthRequest="80">
+            <controls:AnimationPage.PageAnimation>
+                <controls:SlidePageAnimation Duration="Medium" Type="Slide" Subtype="FromRight" />
+            </controls:AnimationPage.PageAnimation>
+
+            <Grid >
+                <ScrollView>
+                    <Grid Margin="0,0,0,100"
+                Padding="{OnPlatform Android='0,12,0,0',
+                                     iOS='0,12,0,0'}"
+                
+                RowSpacing="12">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                                              
+                        <pancake:PancakeView
+                    Grid.Row="1"
+                    
+                    
+                    CornerRadius="36,36,0,0"
+                    >
+                            <StackLayout Padding="12" Spacing="4">
+                                <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                    <ci:CircleImage Margin="10,0,0,0" Grid.Row="0"   Grid.Column="0"
+            HeightRequest="150" BorderColor="#F99D60" BorderThickness="3"   
+            WidthRequest="150"   
+            Source="profile"   
+            Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="FillAndExpand"></ci:CircleImage>
+                                </Grid>
+                                <Label
+                            Margin="24,20,0,0"
+                            FontFamily="AnimalCrossing"
+                            FontSize="Medium"
+                            Text="Name"
+                            TextColor="{StaticResource TextPrimaryColor}" />
+                                <StackLayout BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Entry Margin="1" BackgroundColor="White"  Text="{Binding Name}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Entry>
+                                </StackLayout>
+                                <Label
+                            Margin="24,12,0,0"
+                            FontFamily="AnimalCrossing"
+                            FontSize="Medium"
+                            Text="Email Id"
+                            TextColor="{StaticResource TextPrimaryColor}" />
+                                <StackLayout BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Entry Margin="1" BackgroundColor="White" Keyboard="Email" Text="{Binding EmailId}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Entry>
+                                </StackLayout>
+                                <Label
+                            Margin="24,12,0,0"
+                            FontFamily="AnimalCrossing"
+                            FontSize="Medium"
+                            Text="Mobile No"
+                            TextColor="{StaticResource TextPrimaryColor}" />
+                                <StackLayout BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Entry Margin="1" BackgroundColor="White" Keyboard="Telephone" Text="{Binding MobileNo}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Entry>
+                                </StackLayout>
+                                <Label
+                            Margin="24,12,0,0"
+                            FontFamily="AnimalCrossing"
+                            FontSize="Medium"
+                            Text="Address"
+                            TextColor="{StaticResource TextPrimaryColor}" />
+                                <StackLayout BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Editor Margin="1" BackgroundColor="White" HeightRequest="70"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Editor>
+                                </StackLayout>
+                                
+                                <Label 
+                            Margin="24,12,0,0"
+                            FontFamily="AnimalCrossing"
+                            FontSize="Medium"
+                            Text="Gender"
+                            TextColor="{StaticResource TextPrimaryColor}" />
+                                <StackLayout BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid Margin="1" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label  Grid.Row="0" Grid.Column="0"
+                            Margin="24,12,0,0"
+                            FontFamily="AnimalCrossing"
+                            FontSize="Medium"
+                            Text="Male"
+                            TextColor="{StaticResource TextPrimaryColor}" />
+                                        <CheckBox x:Name="chkMale" IsChecked="True"
+          HorizontalOptions="Center"
+          VerticalOptions="CenterAndExpand"  Grid.Row="0" Grid.Column="1"/>
+
+                                        <Label Grid.Row="0" Grid.Column="2"
+                            Margin="0,12,0,0"
+                            FontFamily="AnimalCrossing"
+                            FontSize="Medium"
+                            Text="Female"
+                            TextColor="{StaticResource TextPrimaryColor}" />
+                                        <CheckBox x:Name="chkFemale"  IsChecked="false" Grid.Row="0" Grid.Column="3"
+          HorizontalOptions="Center"
+          VerticalOptions="CenterAndExpand" />
+                                    </Grid>
+                                </StackLayout>
+                                <Label
+                            Margin="24,12,0,0"
+                            FontFamily="AnimalCrossing"
+                            FontSize="Medium"
+                            Text="Birth Date"
+                            TextColor="{StaticResource TextPrimaryColor}" />
+                                <StackLayout BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <DatePicker Margin="1" BackgroundColor="White" Format="D"
+            VerticalOptions="CenterAndExpand" Date="{Binding DateOfBirth}" />
+                                </StackLayout>
+                                <Label
+                            Margin="24,12,0,0"
+                            FontFamily="AnimalCrossing"
+                            FontSize="Medium"
+                            Text="Birth Place"
+                            TextColor="{StaticResource TextPrimaryColor}" />
+                                <StackLayout BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Entry Margin="1" BackgroundColor="White" Text="{Binding BirthPlace}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Entry>
+                                </StackLayout>
+                                <Label
+                            Margin="24,12,0,20"
+                            FontFamily="AnimalCrossing"
+                            FontSize="Medium"
+                            Text=""
+                            TextColor="{StaticResource TextPrimaryColor}" />
+                            </StackLayout>
+
+                        </pancake:PancakeView>
+
+
+                    </Grid>
+                </ScrollView>
+                <RelativeLayout VerticalOptions="End" BackgroundColor="{StaticResource AppColor4}" HorizontalOptions="Fill" HeightRequest="38" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
+                    <Grid ColumnSpacing="0" HeightRequest="38" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
+
+                        <Button x:Name="btnSave" Margin="0,1,1,0" Grid.Column="0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  FontAttributes="Bold" HeightRequest="38" Text="Save" FontSize="14"  BackgroundColor="{StaticResource AppButtonColor}" TextColor="White" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"></Button>
+                        <Button x:Name="btnCancel" Margin="0,1,1,0"  Grid.Column="1"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold" HeightRequest="38" Text="Cancel" FontSize="14" BackgroundColor="{StaticResource AppButtonColor}" TextColor="White" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"></Button>
+                    </Grid>
+                </RelativeLayout>
+            </Grid>
+        </controls:AnimationPage>
+        <controls:AnimationPage Title="Call / Chat History" WidthRequest="80" >
+            <controls:AnimationPage.PageAnimation>
+                <controls:SlidePageAnimation Duration="Medium" Type="Slide" Subtype="FromRight" />
+            </controls:AnimationPage.PageAnimation>
+            <ListView x:Name="CallList" Margin="0,10,0,0"
+            ItemsSource="{Binding UserConsultationChargesTransactionList}"
+            
+            CachingStrategy="RecycleElement" SeparatorVisibility="None"
+              >
+                <ListView.RowHeight>
+                    <OnPlatform x:TypeArguments="x:Int32">
+                        <On Platform="iOS, Android" Value="160" />
+                        <On Platform="UWP" Value="170" />
+                    </OnPlatform>
+                </ListView.RowHeight>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ContentView Padding="5" BackgroundColor="{StaticResource AppColor4}">
+                                <Frame OutlineColor="LightGray" CornerRadius="10"
+                               Padding="10">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Grid Grid.Row="0"   Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                            <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                                <ci:CircleImage Grid.Row="0" Grid.Column="0" Margin="10,5,0,0" 
+            HeightRequest="85" BorderColor="{StaticResource AppButtonColor}" BorderThickness="3"    
+            WidthRequest="85"   
+            Source="{Binding ProfilePicURL}" 
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+                                                <Label Grid.Row="0" Grid.Column="0"  Margin="-210,0,0,0"    FontSize="14" FontAttributes="Bold" Text="{Binding ConsultType}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                                            </Grid>
+                                            <!--<Grid Grid.Row="3" Grid.Column="0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                                <Image Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" Source="rating.png" Aspect="AspectFill" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" VerticalOptions="Start"></Image>
+                                                <Label Grid.Row="0" Grid.Column="1" Margin="-50,0,0,0"  Grid.ColumnSpan="3"     FontSize="13" FontAttributes="Bold" Text="{Binding Rating,StringFormat='{0:F2}'}" TextColor="Brown" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"></Label>
+                                            </Grid>-->
+                                        </Grid>
+                                        <Grid Grid.Row="0"  Margin="-220,0,0,0" Grid.ColumnSpan="4" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+                                            <Label Grid.Row="0" Grid.Column="0" Margin="0,2,0,0" Grid.ColumnSpan="3"  HeightRequest="45" TextColor="LightGray" FontAttributes="Bold"   Text="{Binding StartDate, StringFormat='{0:dddd, MMMM dd, yyyy HH:mm}'}" 
+                                           FontSize="14"
+                                           VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                            <Label Grid.Row="1" Margin="0,-10,0,0" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="45"  Text="{Binding AstroId, StringFormat='Astrologer Name : Astrologer {0}'}" 
+                                           FontSize="14"
+                                           VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                            <Label Grid.Row="2" Margin="0,-10,0,0" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="45"  Text="{Binding ConsultAmount, StringFormat='Call Amount : {0:F2}'}" 
+                                           FontSize="14"
+                                           VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                            <Label Grid.Row="3" Margin="0,-10,0,0" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="45"  Text="{Binding Duration, StringFormat='Call Duration : {0:hh:mm:ss}'}" 
+                                           FontSize="14"
+                                           VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                            <Label Grid.Row="4" Margin="0,-10,0,0" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="45"  Text="Call Rating : 5" 
+                                           FontSize="14"
+                                           VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                            <!--<Frame Grid.Row="2" HeightRequest="100"  Grid.Column="0" Grid.ColumnSpan="3"  OutlineColor="#F99D60"
+                               Padding="0" CornerRadius="10">
+                                                <StackLayout BindableLayout.ItemsSource="{Binding Path=AstrologerReviewList}">
+                                                    <BindableLayout.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Label Margin="0,10,10,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"  HeightRequest="45"  Text="{Binding Review}" 
+                                           FontSize="14"
+                                           VerticalOptions="Center" HorizontalOptions="End"/>
+                                                        </DataTemplate>
+                                                    </BindableLayout.ItemTemplate>
+
+                                                </StackLayout>
+
+                                            </Frame>-->
+                                            <!--<Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="45"  Text="{Binding Review}" 
+                                           FontSize="14"
+                                           VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>-->
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </controls:AnimationPage>
+        <controls:AnimationPage Title="My Astrologers" WidthRequest="200">
+            <controls:AnimationPage.PageAnimation>
+                <controls:SlidePageAnimation Duration="Medium" Type="Slide" Subtype="FromRight" />
+            </controls:AnimationPage.PageAnimation>
+            <ListView x:Name="MyListView" Margin="0,5,0,0"
+            ItemsSource="{Binding Astrologers}"
+            ItemTapped="Handle_ItemTapped"
+            CachingStrategy="RecycleElement" SeparatorVisibility="None"
+              >
+                <ListView.RowHeight>
+                    <OnPlatform x:TypeArguments="x:Int32">
+                        <On Platform="iOS, Android" Value="150" />
+                        <On Platform="UWP" Value="160" />
+                    </OnPlatform>
+                </ListView.RowHeight>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ContentView Padding="5" BackgroundColor="{StaticResource AppColor4}">
+                                <Frame OutlineColor="LightGray" CornerRadius="10"
+                               Padding="10">
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout >
+                                            <ImageButton CornerRadius="10" Source="{Binding ProfilePicURL}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                       HeightRequest="100" WidthRequest="100"/>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="{Binding Name}"
+                                           FontSize="18"
+                                           VerticalOptions="StartAndExpand" FontAttributes="Bold" TextColor="DarkGray"/>
+                                            <Grid Margin="0,-17,0,0">
+                                                <Label  Text="Exp: " WidthRequest="32" TextColor="DarkGray" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                                                <Label WidthRequest="16" Margin="-5,0" Text="{Binding Experience}" Grid.Column="1"
+                                           FontSize="14" TextColor="DarkGray"
+                                           VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                                                <Label Text="Years" TextColor="DarkGray" Margin="-20,0" Grid.Column="2" Grid.ColumnSpan="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                                            </Grid>
+
+                                            <Grid Margin="0,-7,0,0">
+                                                <Label  Text="{Binding rupee}" x:Name="txtRs" FontSize="14" WidthRequest="32" TextColor="DarkGray" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                                                <Label  Grid.Column="1" Grid.ColumnSpan="10" Margin="-7,0,0,0" Text="{Binding CallRate,StringFormat='{0:F0} / Min'}"
+                                           FontSize="14"
+                                           VerticalOptions="CenterAndExpand" TextColor="DarkGray"/>
+
+                                            </Grid>
+
+
+                                            <Grid Grid.ColumnSpan="5" HeightRequest="20" Margin="0,-7,0,0" BackgroundColor="Brown" VerticalOptions="FillAndExpand" HorizontalOptions="Start"  WidthRequest="85">
+                                                <StackLayout BackgroundColor="White" Margin="0" HeightRequest="20" WidthRequest="85" VerticalOptions="FillAndExpand" HorizontalOptions="Start" >
+                                                    <Grid BackgroundColor="White" WidthRequest="85" HeightRequest="20" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                                                        <Image Grid.Column="0" BackgroundColor="White"  Source="rating.png" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="20" WidthRequest="20" Aspect="AspectFit"></Image>
+                                                        <Label  Grid.Column="1" Grid.ColumnSpan="3" BackgroundColor="White" Text="5.00"                                                        
+                                           FontSize="14"
+                                           VerticalOptions="Start" HorizontalOptions="Start" TextColor="DarkGray"/>
+                                                    </Grid>
+                                                </StackLayout>
+                                            </Grid>
+                                            <Grid HorizontalOptions="Start"  VerticalOptions="FillAndExpand" >
+
+                                                <Grid Grid.Column="0"  HorizontalOptions="Start"  VerticalOptions="FillAndExpand" BackgroundColor="#07189C"  WidthRequest="85"  HeightRequest="23">
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer x:Name="tapChat" Tapped="tapChat_Tapped"/>
+                                                    </Grid.GestureRecognizers>
+                                                    <ImageButton Grid.Column="0" CornerRadius="5" Padding="2" BackgroundColor="#07189C" HeightRequest="27" WidthRequest="27" VerticalOptions="Start" HorizontalOptions="Start" Source="conversation.png"></ImageButton>
+                                                    <Label Grid.Column="1" WidthRequest="55" Padding="1" Margin="-10,2,0,0" HeightRequest="25" TextColor="White" Text="CHAT" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+
+                                                </Grid>
+                                                <Grid Grid.Column="1"  HorizontalOptions="End"  VerticalOptions="FillAndExpand" BackgroundColor="#4EB637"  WidthRequest="85"  HeightRequest="23">
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer x:Name="tapCall" Tapped="tapCall_Tapped"/>
+                                                    </Grid.GestureRecognizers>
+                                                    <ImageButton Grid.Column="0" CornerRadius="5" Padding="2" BackgroundColor="#4EB637" HeightRequest="27" WidthRequest="27" VerticalOptions="Start" HorizontalOptions="Start" Source="call.png"></ImageButton>
+                                                    <Label Grid.Column="1" WidthRequest="55" Padding="1" Margin="-10,2,0,0" HeightRequest="25" TextColor="White" Text="CALL" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+
+                                                </Grid>
+                                            </Grid>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </ContentView>                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </controls:AnimationPage>
+    </TabbedPage.Children>
+    
+</TabbedPage>

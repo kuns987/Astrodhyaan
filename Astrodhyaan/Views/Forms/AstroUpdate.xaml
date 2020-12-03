@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Astrodhyaan.Views.Forms.AstroUpdate"             
+    NavigationPage.HasNavigationBar="False" >
+    <NavigationPage.TitleView>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <WebView HorizontalOptions="Start" VerticalOptions="FillAndExpand" Grid.Column="0" x:Name="webViewGIF" BackgroundColor="#fef4e1" Margin="-20,2,0,0"  Source="http://astrodhaam.com/demo/index.html"  
+            WidthRequest="70" HeightRequest="60">
+            </WebView>
+            <Label Grid.ColumnSpan="3" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Text="Astrodhaam Updates" TextColor="#F99D60" FontSize="18" Margin="-20,0,0,0" FontAttributes="Bold"></Label>
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <Frame   Padding="0" Margin="5,10,5,5" HeightRequest="150" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="25" OutlineColor="#F99D60" >
+                <FlexLayout Margin="10" JustifyContent="SpaceBetween" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Text="No updates available yet"
+                 />
+                </FlexLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

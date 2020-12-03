@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Astrodhyaan.Views.Forms.CustomerSupport"
+             NavigationPage.HasNavigationBar="False">
+    <NavigationPage.TitleView>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <WebView HorizontalOptions="Start" VerticalOptions="FillAndExpand" Grid.Column="0" x:Name="webViewGIF" BackgroundColor="#fef4e1" Margin="-20,2,0,0"  Source="http://astrodhaam.com/demo/index.html"  
+            WidthRequest="70" HeightRequest="60">
+            </WebView>
+            <Label Grid.ColumnSpan="3" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Text="Customer Support" TextColor="#F99D60" FontSize="18" Margin="-20,0,0,0" FontAttributes="Bold"></Label>
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <Frame   Padding="0" Margin="5,10,5,5"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="25" OutlineColor="#F99D60" >
+                <StackLayout Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
+                    <Image Grid.Row="0" Grid.Column="0" WidthRequest="60" HeightRequest="60" Source="support.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Start" ></Image>
+                    <Label Grid.Row="1" Grid.Column="0" Text="Astrodhaam Customer Support"
+                VerticalOptions="Start"  
+                HorizontalOptions="Center" FontSize="18" TextColor="DarkGray" FontAttributes="Bold" />
+                    <Label Grid.Row="2" Grid.Column="0" Text="Mobile No : 8850951174"
+                VerticalOptions="Start" 
+                HorizontalOptions="Center" FontSize="18" TextColor="DarkGray" />
+                    <Label Grid.Row="3" Grid.Column="0" Text="Email Id : admin@astrodhaam.com"
+                VerticalOptions="Start" 
+                HorizontalOptions="Center" FontSize="18" TextColor="DarkGray" />
+                    <Label Grid.Row="4" Grid.Column="0" Text="Website : http://www.astrodhaam.com"
+                VerticalOptions="Start" 
+                HorizontalOptions="Center" FontSize="18" TextColor="DarkGray" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

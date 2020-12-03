@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:AnimationPage  
+             xmlns:controls="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="Astrodhyaan.Views.Forms.SignUp">
+    <controls:AnimationPage.PageAnimation>
+        <controls:SlidePageAnimation Duration="Medium" Type="Slide" Subtype="FromRight"  />
+    </controls:AnimationPage.PageAnimation>
+    <NavigationPage.TitleView>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <WebView HorizontalOptions="Start" VerticalOptions="FillAndExpand" Grid.Column="0" x:Name="webViewGIF" BackgroundColor="#fef4e1" Margin="-20,2,0,0"  Source="http://astrodhaam.com/demo/index.html"  
+            WidthRequest="70" HeightRequest="60">
+            </WebView>
+            <Label Grid.ColumnSpan="3" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Text="Sign Up" TextColor="#F99D60" FontSize="18" Margin="-20,0,0,0" FontAttributes="Bold"></Label>
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" >
+
+            <Grid HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                <ScrollView>
+                    <Grid Margin="0,0,0,100"
+                Padding="{OnPlatform Android='0,12,0,0',
+                                     iOS='0,12,0,0'}"
+                
+                RowSpacing="12">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <pancake:PancakeView
+                    Grid.Row="1"
+                    
+                    
+                    CornerRadius="36,36,0,0"
+                    >
+                            <StackLayout Padding="12" Spacing="4">
+                                <Label
+                            Margin="24,0,0,0"
+                            FontFamily="AnimalCrossing"
+                            FontSize="Medium"
+                            Text="Name"
+                            TextColor="{StaticResource TextPrimaryColor}" />
+                                <StackLayout Padding="0" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand"  VerticalOptions="Start">
+                                    <Entry Margin="1"  BackgroundColor="White" HeightRequest="40"  Placeholder="Enter Name" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Entry>
+                                </StackLayout>
+                                <Label
+                            Margin="24,0,0,0"
+                            FontFamily="AnimalCrossing"
+                            FontSize="Medium"
+                            Text="Mobile Number"
+                            TextColor="{StaticResource TextPrimaryColor}" />
+                                <StackLayout Padding="0" BackgroundColor="LightGray"   HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                    <Entry Margin="1" BackgroundColor="White" HeightRequest="40" Keyboard="Telephone"  Placeholder="Enter Mobile No." HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Entry>
+                                </StackLayout>
+                                <Label
+                            Margin="24,0,0,0"
+                            FontFamily="AnimalCrossing"
+                            FontSize="Medium"
+                            Text="Email Address"
+                            TextColor="{StaticResource TextPrimaryColor}" />
+                                <StackLayout BackgroundColor="LightGray"  HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                    <Entry Margin="1" BackgroundColor="White" HeightRequest="40" Keyboard="Email" Placeholder="Enter Email" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Entry>
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </pancake:PancakeView>
+
+
+                    </Grid>
+                </ScrollView>
+
+            </Grid>
+            <RelativeLayout VerticalOptions="End" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" HeightRequest="38" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
+                <Grid ColumnSpacing="0" HeightRequest="38" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
+
+                    <Button x:Name="btnSave" Grid.Column="0"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"  FontAttributes="Bold" HeightRequest="38" Text="Register" FontSize="14"  BackgroundColor="#F99D60" TextColor="White" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"></Button>
+
+                </Grid>
+            </RelativeLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</controls:AnimationPage>

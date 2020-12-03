@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Astrodhyaan.MasterNavigationMaster"
+             Title="Master">
+  <StackLayout>
+    <ListView x:Name="MenuItemsListView"
+              SeparatorVisibility="None"
+              HasUnevenRows="true" BackgroundColor="{StaticResource AppColor4}"
+              ItemsSource="{Binding MenuItems}">
+      <d:ListView.ItemsSource>
+          <x:Array Type="{x:Type x:String}">
+              <x:String>Page 1</x:String>
+              <x:String>Page 2</x:String>
+              <x:String>Page 3</x:String>
+              <x:String>Page 4</x:String>
+              <x:String>Page 5</x:String>
+          </x:Array>
+      </d:ListView.ItemsSource>
+      <ListView.Header>
+                <Grid BackgroundColor="{StaticResource AppDarkColor}">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="155"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1"/>
+          </Grid.RowDefinitions>
+                    <StackLayout Grid.ColumnSpan="3" HeightRequest="110" Margin="50,0"  Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                        <WebView x:Name="webViewGIF" BackgroundColor="#fef4e1" Margin="10"  Source="http://astrodhaam.com/demo/index1.html"  VerticalOptions="FillAndExpand" HeightRequest="110"  
+            WidthRequest="110">
+                        </WebView>
+                        <Label Text="Astrodhaam" FontAttributes="Bold" FontSize="18" Padding="35,0,0,0" TextColor="DarkGray"></Label>
+                    </StackLayout>
+                    
+        </Grid>
+      </ListView.Header>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Padding="8,8" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <Image Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Source="{Binding ImgName}" Aspect="AspectFit" HeightRequest="30"></Image>
+                            <StackLayout Grid.Row="0" Grid.Column="1">
+                            <Label  VerticalOptions="FillAndExpand" HorizontalOptions="Start" 
+                    VerticalTextAlignment="Center" 
+                    Text="{Binding Title}" 
+                    d:Text="{Binding .}"
+                    FontSize="16" TextColor="DarkGray"/>
+                            </StackLayout>
+                        </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>

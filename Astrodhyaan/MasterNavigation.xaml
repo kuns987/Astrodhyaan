@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Astrodhyaan.MasterNavigation"
+             xmlns:pages="clr-namespace:Astrodhyaan"
+             xmlns:viewpage="clr-namespace:Astrodhyaan.Views.Forms"
+                  NavigationPage.HasNavigationBar="False">
+    
+  <MasterDetailPage.Master>
+    <pages:MasterNavigationMaster x:Name="MasterPage" />
+  </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+    <NavigationPage>
+      <x:Arguments>
+        <viewpage:LoginPage/>
+      </x:Arguments>
+    </NavigationPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

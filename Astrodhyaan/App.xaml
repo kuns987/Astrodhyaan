@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:Astrodhyaan.Converters"
+             mc:Ignorable="d"
+             xmlns:themes = "clr-namespace:Astrodhyaan.Themes;assembly=Astrodhyaan"
+             x:Class="Astrodhyaan.App">
+    <Application.Resources>
+
+        <ResourceDictionary>            
+            <ResourceDictionary.MergedDictionaries>
+                <themes:LightTheme />
+            </ResourceDictionary.MergedDictionaries >
+            <Color x:Key="AppLightColor">#190D38</Color>
+            <Color x:Key="AppGreyishColor">#f5f5f5</Color>
+            <Color x:Key="AppDarkColor">#fff0db</Color>
+            <Color x:Key="AppButtonColor">#F39558</Color>
+            <Color x:Key="AppColor1">#fedbc1</Color>
+            <Color x:Key="AppColor2">#f7e4df</Color>
+            <Color x:Key="AppColor3">#fff2c0</Color>
+            <Color x:Key="AppColor4">#f5fafa</Color>
+            <Color x:Key="AppColor5">#ffe682</Color>
+            <Color x:Key="AppColor6">#F8E3CF</Color>
+            <Color x:Key="AppColor7">#CCCCCC</Color>
+            <Color x:Key="AppColor8">#f8f9fa</Color>
+            <Color x:Key="AppColor9">#eef3f3</Color>
+            <Color x:Key="AppColor10">#ECAF59</Color>
+            <Color x:Key="BarBackgroundColor">#190D38</Color>
+            <Color x:Key="TextColor">#A5A6A8</Color>
+            <Color x:Key="BackgroundColor">#241345</Color>
+            <Color x:Key="DetailTextColor">#A5A6A8</Color>
+            <Color x:Key="TextPrimaryColor">#6F6F6F</Color>
+            <Color x:Key="NavigationPrimary">#71B6F7</Color>
+            <Color x:Key="AcrylicSurface">#E6E6E6</Color>
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#fff0db"/>
+                <Setter Property="BarTextColor" Value="Black"/>                
+                
+            </Style>
+            <Style x:Key="stlContactBtn" TargetType="Button">
+                <Setter Property="TranslationY"     Value="-50"/>
+                <Setter Property="TranslationX"     Value="45"/>
+                <Setter Property="BackgroundColor"  Value="#2193f3"/>
+                <Setter Property="WidthRequest"     Value="56"/>
+                <Setter Property="HeightRequest"    Value="56"/>
+                <Setter Property="CornerRadius"     Value="28"/>
+            </Style>
+
+            <Style x:Key="stlBoardTitle" TargetType="Label">
+                <Setter Property="Padding"           Value="0,30,0,5"/>
+                <Setter Property="TextColor"         Value="#a5a2a2"/>
+                <Setter Property="FontSize"          Value="16"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="stlBoardDesc" TargetType="Label">
+                <Setter Property="FontAttributes"    Value="Bold"/>
+                <Setter Property="FontSize"          Value="16" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="stlMainFrame" TargetType="Frame">
+                <Setter Property="TranslationY"    Value="{OnPlatform iOS='-150', Android='-20'}"/>                
+                <Setter Property="HeightRequest"   Value="{OnPlatform iOS='200', Android='280'}"/>
+                <Setter Property="HasShadow"       Value="False" />
+            </Style>
+        </ResourceDictionary>        
+    </Application.Resources>
+</Application>

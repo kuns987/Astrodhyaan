@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:AnimationPage 
+             xmlns:controls="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Astrodhyaan.Views.Forms.AstrologersList"
+             >
+    
+    <controls:AnimationPage.PageAnimation>
+        <controls:SlidePageAnimation Duration="Medium" Type="Slide" Subtype="FromRight" />
+    </controls:AnimationPage.PageAnimation>
+    <NavigationPage.TitleView>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <WebView HorizontalOptions="Start" VerticalOptions="FillAndExpand" Grid.Column="0" x:Name="webViewGIF" BackgroundColor="#fef4e1" Margin="-20,2,0,0"  Source="http://astrodhaam.com/demo/index.html"  
+            WidthRequest="70" HeightRequest="60">
+            </WebView>
+            <Label x:Name="lblHead" Grid.ColumnSpan="3" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Text="Astrodhaam Experts" TextColor="DarkGray" FontSize="15" Margin="-20,0,0,0" FontAttributes="Bold"></Label>
+            
+        </Grid>
+        
+        
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+    <StackLayout BackgroundColor="White">
+            
+            <ContentView x:Name="cvSearch" HeightRequest="130" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid  HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppDarkColor}" >
+
+                    <Frame Grid.Row="0" Grid.Column="0" Margin="10,0,10,5" BackgroundColor="{StaticResource AppGreyishColor}"  HeightRequest="35" Padding="0"  CornerRadius="15">
+                        <SearchBar Visual="Material" BackgroundColor="White"  HeightRequest="35" Placeholder="Search Astrologer"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    </Frame>
+                    <Grid Grid.Row="1" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="3,0,3,0">
+                        <StackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand"   HorizontalOptions="Start">
+                            <Button Grid.Row="0"  Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="100" HeightRequest="30" FontSize="10" FontAttributes="Bold" BackgroundColor="{StaticResource AppButtonColor}" Text="Offline" TextColor="White"  CornerRadius="10" Padding="0"></Button>                        
+                    </StackLayout>
+                        <StackLayout Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand"  HorizontalOptions="Start">
+                            <Button Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="100"  HeightRequest="30" FontSize="10" FontAttributes="Bold" BackgroundColor="{StaticResource AppButtonColor}" Text="Busy" TextColor="White"  CornerRadius="10" Padding="0"></Button>                        
+                    </StackLayout>
+                    <StackLayout Grid.Row="0" Grid.Column="2"   VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                            <Button Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="100" HeightRequest="30" FontSize="10" FontAttributes="Bold" BackgroundColor="{StaticResource AppButtonColor}" Text="On Chat" TextColor="White"  CornerRadius="10" Padding="0"></Button>                        
+                    </StackLayout>
+                    <StackLayout Grid.Row="0" Grid.Column="3"   VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                            <Button Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="100" HeightRequest="30" FontSize="10" FontAttributes="Bold" BackgroundColor="{StaticResource AppButtonColor}" Text="Online" TextColor="White"  CornerRadius="10" Padding="0"></Button>                        
+                    </StackLayout>
+                    <StackLayout Grid.Row="0" Grid.Column="4"   VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                            <Button Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="100" HeightRequest="30" FontSize="10" FontAttributes="Bold" BackgroundColor="{StaticResource AppButtonColor}" Text="Filter" TextColor="White"  CornerRadius="10" Padding="0"></Button>                        
+                    </StackLayout>
+                    <StackLayout Grid.Row="0" Grid.Column="5"   VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                            <Button Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="100" HeightRequest="30" FontSize="10" FontAttributes="Bold" BackgroundColor="{StaticResource AppButtonColor}" Text="Sort" TextColor="White"  CornerRadius="10" Padding="0"></Button>
+                    </StackLayout>
+                    </Grid>
+                </Grid>
+                
+                
+            </ContentView>
+            <StackLayout  BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical">
+                <ActivityIndicator x:Name="ActInd" IsVisible="False"  IsRunning = "True" IsEnabled="True" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></ActivityIndicator>
+                <ListView  BackgroundColor="White" x:Name="MyListView" Margin="0,5,0,0" 
+            ItemsSource="{Binding Astrologers}"
+            ItemTapped="Handle_ItemTapped"
+            SeparatorVisibility="None"
+              >
+                    <ListView.RowHeight>
+                        <OnPlatform x:TypeArguments="x:Int32">
+                            <On Platform="iOS, Android" Value="150" />
+                            <On Platform="UWP" Value="160" />
+                        </OnPlatform>
+                    </ListView.RowHeight>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ContentView Padding="5" BackgroundColor="White">
+                                    <Frame  BorderColor="{StaticResource AppColor4}" CornerRadius="10"
+                               Padding="10">
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout>
+                                                <ImageButton CornerRadius="10" Source="{Binding ProfilePicURL}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                       HeightRequest="100" WidthRequest="100"/>
+                                            </StackLayout>
+                                            <StackLayout>
+                                                <Label Text="{Binding Name}"
+                                           FontSize="18"
+                                           VerticalOptions="StartAndExpand" FontAttributes="Bold" TextColor="DarkGray"/>
+                                                <Grid Margin="0,-17,0,0">
+                                                    <Label  Text="Exp: " WidthRequest="32" TextColor="DarkGray" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                                                    <Label WidthRequest="16" Margin="-5,0" Text="{Binding Experience}" Grid.Column="1"
+                                           FontSize="14" TextColor="DarkGray"
+                                           VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                                                    <Label Text="Years" TextColor="DarkGray" Margin="-20,0" Grid.Column="2" Grid.ColumnSpan="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                                                </Grid>
+
+                                                <Grid Margin="0,-7,0,0">
+                                                    <Label  Text="{Binding rupee}" x:Name="txtRs" FontSize="14" WidthRequest="32" TextColor="DarkGray" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                                                    <Label  Grid.Column="1" Grid.ColumnSpan="10" Margin="-7,0,0,0" Text="{Binding CallRate,StringFormat='{0:F0} / Min'}"
+                                           FontSize="14"
+                                           VerticalOptions="CenterAndExpand" TextColor="DarkGray"/>
+
+                                                </Grid>
+
+
+                                                <Grid Grid.ColumnSpan="5" HeightRequest="20" Margin="0,-7,0,0" BackgroundColor="Brown" VerticalOptions="FillAndExpand" HorizontalOptions="Start"  WidthRequest="85">
+                                                    <StackLayout BackgroundColor="White" Margin="0" HeightRequest="20" WidthRequest="85" VerticalOptions="FillAndExpand" HorizontalOptions="Start" >
+                                                        <Grid BackgroundColor="White" WidthRequest="85" HeightRequest="20" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                                                            <Image Grid.Column="0" BackgroundColor="White"  Source="rating.png" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="20" WidthRequest="20" Aspect="AspectFit"></Image>
+                                                            <Label  Grid.Column="1" Grid.ColumnSpan="3" BackgroundColor="White" Text="5.00"                                                        
+                                           FontSize="14"
+                                           VerticalOptions="Start" HorizontalOptions="Start" TextColor="DarkGray"/>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </Grid>
+                                                <Grid HorizontalOptions="Start"  VerticalOptions="FillAndExpand" >
+
+                                                    <Grid Grid.Column="0"  HorizontalOptions="Start"  VerticalOptions="FillAndExpand" BackgroundColor="#07189C"  WidthRequest="85"  HeightRequest="23">
+                                                        <Grid.GestureRecognizers>
+                                                            <TapGestureRecognizer x:Name="tapChat" Tapped="tapChat_Tapped"/>
+                                                        </Grid.GestureRecognizers>
+                                                        <ImageButton Grid.Column="0" CornerRadius="5" Padding="2" BackgroundColor="#07189C" HeightRequest="27" WidthRequest="27" VerticalOptions="Start" HorizontalOptions="Start" Source="conversation.png"></ImageButton>
+                                                        <Label Grid.Column="1" WidthRequest="55" Padding="1" Margin="-10,2,0,0" HeightRequest="25" TextColor="White" Text="CHAT" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+
+                                                    </Grid>
+                                                    <Grid Grid.Column="1"  HorizontalOptions="End"  VerticalOptions="FillAndExpand" BackgroundColor="#4EB637"  WidthRequest="85"  HeightRequest="23">
+                                                        <Grid.GestureRecognizers>
+                                                            <TapGestureRecognizer x:Name="tapCall" Tapped="tapCall_Tapped"/>
+                                                        </Grid.GestureRecognizers>
+                                                        <ImageButton Grid.Column="0" CornerRadius="5" Padding="2" BackgroundColor="#4EB637" HeightRequest="27" WidthRequest="27" VerticalOptions="Start" HorizontalOptions="Start" Source="call.png"></ImageButton>
+                                                        <Label Grid.Column="1" WidthRequest="55" Padding="1" Margin="-10,2,0,0" HeightRequest="25" TextColor="White" Text="CALL" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+
+                                                    </Grid>
+                                                </Grid>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </ContentView>
+                               
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</controls:AnimationPage>

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage 
+    xmlns:controls="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Astrodhyaan.Views.Forms.Horoscope">
+    <NavigationPage.TitleView>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <WebView HorizontalOptions="Start" VerticalOptions="FillAndExpand" Grid.Column="0" x:Name="webViewGIF" BackgroundColor="#fef4e1" Margin="-20,2,0,0"  Source="http://astrodhaam.com/demo/index.html"  
+            WidthRequest="70" HeightRequest="60">
+            </WebView>
+            <Label x:Name="lblHead" Grid.ColumnSpan="3" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Text="Horoscope - Aries" TextColor="DarkGray" FontSize="18" Margin="-20,0,0,0" FontAttributes="Bold"></Label>
+
+        </Grid>
+    </NavigationPage.TitleView>
+  <!--Pages can be added as references or inline-->
+    <TabbedPage.Children>
+        <controls:AnimationPage Title="Today" WidthRequest="80">
+            <controls:AnimationPage.PageAnimation>
+                <controls:SlidePageAnimation Duration="Medium" Type="Slide" Subtype="FromRight" />
+            </controls:AnimationPage.PageAnimation>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <Frame   Padding="0" Margin="5,10,5,5"  HorizontalOptions="Start" VerticalOptions="FillAndExpand" CornerRadius="25" OutlineColor="#F99D60" >
+                    <FlexLayout JustifyContent="Start"   HorizontalOptions="Start" VerticalOptions="FillAndExpand"  Margin="15">
+                        <Label x:Name="lblToday" HorizontalOptions="Start" VerticalOptions="FillAndExpand"  Text=""
+                 />
+                    </FlexLayout>
+                </Frame>
+            </StackLayout>            
+        </controls:AnimationPage>
+    
+        <controls:AnimationPage Title="Tomo" WidthRequest="80">
+            <controls:AnimationPage.PageAnimation>
+                <controls:SlidePageAnimation Duration="Medium" Type="Slide" Subtype="FromRight" />
+            </controls:AnimationPage.PageAnimation>
+
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <Frame   Padding="0" Margin="5,10,5,5" HeightRequest="150" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" CornerRadius="25" OutlineColor="#F99D60" >
+                    <FlexLayout JustifyContent="Start"     Margin="15">
+                        <Label x:Name="lblTomorrow" Text=""
+                 />
+                    </FlexLayout>
+                </Frame>
+            </StackLayout>
+        </controls:AnimationPage>
+        <controls:AnimationPage Title="Week" WidthRequest="80">
+            <controls:AnimationPage.PageAnimation>
+                <controls:SlidePageAnimation Duration="Medium" Type="Slide" Subtype="FromRight" />
+            </controls:AnimationPage.PageAnimation>
+
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <Frame   Padding="0" Margin="5,10,5,5" HeightRequest="150" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" CornerRadius="25" OutlineColor="#F99D60" >
+                    <FlexLayout JustifyContent="Start"     Margin="15">
+                        <Label x:Name="lblWeek"  Text=""
+                 />
+                    </FlexLayout>
+                </Frame>
+            </StackLayout>
+        </controls:AnimationPage>
+        <controls:AnimationPage Title="Month" WidthRequest="80">
+            <controls:AnimationPage.PageAnimation>
+                <controls:SlidePageAnimation Duration="Medium" Type="Slide" Subtype="FromRight" />
+            </controls:AnimationPage.PageAnimation>
+
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <Frame   Padding="0" Margin="5,10,5,5" HeightRequest="150" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="25" OutlineColor="#F99D60" >
+                    <FlexLayout JustifyContent="Start"     Margin="15">
+                        <Label x:Name="lblMonth"  Text=""
+                 />
+                    </FlexLayout>
+                </Frame>
+            </StackLayout>
+        </controls:AnimationPage>
+        <controls:AnimationPage Title="2020" WidthRequest="80">
+            <controls:AnimationPage.PageAnimation>
+                <controls:SlidePageAnimation Duration="Medium" Type="Slide" Subtype="FromRight" />
+            </controls:AnimationPage.PageAnimation>
+
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <Frame   Padding="0" Margin="5,10,5,5" HeightRequest="150" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="25" OutlineColor="#F99D60" >
+                    <FlexLayout JustifyContent="Start"     Margin="15">
+                        <Label x:Name="lbl2020" Text=""
+                 />
+                    </FlexLayout>
+                </Frame>
+            </StackLayout>
+        </controls:AnimationPage>
+    </TabbedPage.Children>
+    
+</TabbedPage>

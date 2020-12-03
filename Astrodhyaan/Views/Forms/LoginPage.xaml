@@ -1,0 +1,1255 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    
+<controls:AnimationPage    
+    xmlns:controls="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"      
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:Astrodhyaan.Models"
+    xmlns:viewmodels="clr-namespace:Astrodhyaan.ViewModels"
+    xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"      
+    xmlns:ci="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"   
+    x:Class="Astrodhyaan.Views.Forms.LoginPage"
+    
+    mc:Ignorable="d"    
+    NavigationPage.HasNavigationBar="True"    
+    >
+    <!--xmlns:controls="clr-namespace:Astrodhyaan.Views.Forms"-->
+    <controls:AnimationPage.PageAnimation>
+        <controls:SlidePageAnimation Duration="Medium" Type="Slide" Subtype="FromRight"  />
+    </controls:AnimationPage.PageAnimation>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="TitleTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="ExpandeLayoutStyle" TargetType="Grid">
+                <Setter Property="HeightRequest" Value="60" />                
+            </Style>
+
+            <Style x:Key="ExpanderTitleTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#A5A6A8" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="12, 0" />
+            </Style>
+
+            <Style x:Key="ExpanderDetailTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DetailTextColor}" />
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="12" />
+            </Style>
+
+            <Style x:Key="CollpasedColorSytle" TargetType="pv:PancakeView">
+                <Setter Property="CornerRadius" Value="24" />
+                <Setter Property="HeightRequest" Value="48" />
+                <Setter Property="WidthRequest" Value="48" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="12, 0" />
+            </Style>           
+            <Style x:Key="ExpandedColorSytle" TargetType="pv:PancakeView"
+                    BasedOn="{StaticResource CollpasedColorSytle}">
+                <Setter Property="CornerRadius" Value="24, 24, 0, 0" />
+            </Style>
+
+            <Style x:Key="DetailColorSytle" TargetType="pv:PancakeView">
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="HeightRequest" Value="48" />
+                <Setter Property="WidthRequest" Value="48" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Margin" Value="12, 0" />
+            </Style>
+
+            <Style x:Key="LatestDetailColorSytle" TargetType="pv:PancakeView"
+                   BasedOn="{StaticResource DetailColorSytle}">
+                <Setter Property="CornerRadius" Value="0, 0, 24, 24" />
+            </Style>
+
+            <Style x:Key="AddIconStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HeightRequest" Value="24" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="12, 0" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--<ContentPage.BindingContext>
+        <viewmodels:ShoppingListViewModel />
+    </ContentPage.BindingContext>-->
+
+    <NavigationPage.TitleView>
+
+        <StackLayout Padding="0" Margin="0"  HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Orientation="Vertical">
+            <Grid  Grid.Row="0" Grid.Column="0" HeightRequest="100" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <WebView Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" Margin="-20,0,0,0" VerticalOptions="FillAndExpand"  x:Name="webViewGIF" BackgroundColor="#f6dede"  Source="http://astrodhaam.com/demo/index.html" HeightRequest="40"></WebView>
+                <!--<Image Grid.Column="0"  Source="sunrays1.gif" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>-->
+
+                <Label Text="Astrodhaam" Grid.ColumnSpan="2" Grid.Row="0" Margin="-8,10,0,0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold" FontSize="18"  TextColor="DarkGray"></Label>
+                <Grid Grid.Row="0" Grid.Column="2" Margin="0,10,5,0" Grid.ColumnSpan="3"  VerticalOptions="Start"   HorizontalOptions="End" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, Property=Width}">
+                   
+                    <Frame OutlineColor="{StaticResource AppColor2}" BorderColor="{StaticResource AppColor1}" Grid.ColumnSpan="3"  Grid.Row="0" HeightRequest="20" Padding="3"  Grid.Column="0" VerticalOptions="FillAndExpand"   HorizontalOptions="End" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
+                    <Grid  VerticalOptions="FillAndExpand"   HorizontalOptions="FillAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, Property=Width}">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="tapWallet" Tapped="tapWallet_Tapped"></TapGestureRecognizer>
+                        </Grid.GestureRecognizers>
+                            <Image Source="money.png" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="20" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, Property=Width}"></Image>
+                            <Label Margin="21,0,0,0" Text="{Binding Rupee,StringFormat='{0:F0}0.00'}" TextColor="DarkGray" HorizontalOptions="End" VerticalOptions="Center" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, Property=Width}"></Label>
+                    </Grid>
+                </Frame>
+                    <Grid Grid.Row="0" Grid.Column="3" VerticalOptions="End"   HorizontalOptions="End" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, Property=Width}">
+                        <ci:CircleImage   HeightRequest="30"  IsAnimationPlaying="True" VerticalOptions="Start"  HorizontalOptions="End"
+            WidthRequest="30"   
+            Source="notification.png"   
+            Aspect="AspectFit"></ci:CircleImage>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    
+    
+        <StackLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Orientation="Vertical">
+            
+        <ActivityIndicator x:Name="ActInd" IsVisible="False"  IsRunning = "True" IsEnabled="True" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></ActivityIndicator>
+        
+
+
+        <AbsoluteLayout Padding="0,-12,0,0" Margin="0,0,0,0">
+            
+            <Grid Padding="0,0,0,0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+            
+            <ScrollView Grid.Row="1" Padding="0" Margin="0,0,0,0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical">
+                
+            <Grid Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <ContentView BackgroundColor="{StaticResource AppDarkColor}" Grid.Row="0" Grid.Column="0" x:Name="cvSearch"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <Grid  HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppDarkColor}" >
+
+                                    <Frame Margin="10,10,10,5" BackgroundColor="{StaticResource AppGreyishColor}"  HeightRequest="45" Padding="0"  CornerRadius="15">
+                                        <SearchBar Visual="Material" BackgroundColor="White"  HeightRequest="35" Placeholder="Search Astrologer"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                    </Frame>
+
+                                </Grid>
+                            </ContentView>
+                            <CarouselView Grid.Row="1" x:Name="cvBanner"  Margin="0,-6,0,0" BackgroundColor="{StaticResource AppDarkColor}"  HeightRequest="150" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <CarouselView.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>MobileBanner1.jpg</x:String>
+                                        <x:String>MobileBanner2.jpg</x:String>
+                                        <x:String>MobileBanner3.jpg</x:String>
+                                    </x:Array>
+                                </CarouselView.ItemsSource>
+                                <CarouselView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                        <Image Source="{Binding}" Aspect="AspectFill" HeightRequest="150" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                        <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                            <pv:PancakeView.BackgroundGradientStops>
+                                                                <pv:GradientStopCollection>
+                                                                    <pv:GradientStop Color="Transparent" Offset="0"/>
+                                                                    <pv:GradientStop Color="Transparent" Offset="1"/>
+                                                                    <pv:GradientStop Color="Transparent" Offset="1"/>
+                                                                    <pv:GradientStop Color="Transparent" Offset="1"/>
+                                                                    <pv:GradientStop Color="Transparent" Offset="0"/>
+                                                                </pv:GradientStopCollection>
+                                                            </pv:PancakeView.BackgroundGradientStops>
+
+                                                        </pv:PancakeView>
+                                                    </Grid>
+                                                </pv:PancakeView>
+
+
+                                            </Grid>
+
+                                        </Grid>
+
+
+
+                                    </DataTemplate>
+
+                                </CarouselView.ItemTemplate>
+
+                            </CarouselView>
+                            <IndicatorView x:Name="indicatorView"
+               IndicatorColor="LightGray"
+               SelectedIndicatorColor="DarkGray" />
+                            <ContentView Grid.Row="2" x:Name="AstroView"  BackgroundColor="{StaticResource AppColor2}" Margin="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                <Grid Margin="1" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                                <StackLayout  Margin="8"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                        <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <ci:CircleImage Source="fish.png" Aspect="Fill" Margin="0,8,0,0" WidthRequest="13" HeightRequest="13" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+                                        <Label Grid.ColumnSpan="20" Text="Currently Online" Margin="2,8,0,0" TextColor="DarkGray" FontAttributes="Bold" FontSize="15" Grid.Row="0" Grid.Column="1"></Label>
+
+                                    
+                                        </Grid>
+                                        <Button ClassId="Currently_Online" ImageSource="btnsearch.png" Margin="0,-40,0,0" x:Name="btnExploreAll" Clicked="btnExploreAll_Clicked" FontSize="11" BackgroundColor="{StaticResource AppButtonColor}" TextColor="White" Text="Explore All" FontAttributes="Bold" WidthRequest="120" HeightRequest="35"  CornerRadius="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="End"></Button>
+                                        <ScrollView   Orientation="Horizontal" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <StackLayout  x:Name="CurrentAstroView"   BindableLayout.ItemsSource="{Binding Path=Astrologers}" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <!--<StackLayout.GestureRecognizers>                                                
+                                                <TapGestureRecognizer Command="{Binding AstroTop_Clicked}" CommandParameter="{Binding Id}"/>
+                                            </StackLayout.GestureRecognizers>-->
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <pv:PancakeView Padding="0"  BackgroundColor="{StaticResource AppGreyishColor}"  Margin="3"   WidthRequest="120" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                            <StackLayout BackgroundColor="White" Margin="1" Padding="0"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                            <StackLayout.GestureRecognizers>
+                                                                <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                            </StackLayout.GestureRecognizers>
+                                                                <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                            <Image Grid.Row="0" Grid.Column="0" Margin="3" HeightRequest="120" WidthRequest="120"  Source="{Binding ProfilePicURL}"  Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="End"/>
+
+                                                            <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                <BoxView BackgroundColor="White" Opacity="0"/>
+
+                                                            </pv:PancakeView>
+                                                            <StackLayout>
+                                                                <ImageButton x:Name="btnCall" Source="call.png"  Aspect="AspectFit" HeightRequest="30" Margin="0,5,5,0" HorizontalOptions="End" VerticalOptions="End" Clicked="btnCall_Clicked"></ImageButton>
+                                                            </StackLayout>
+                                                                </Grid>
+                                                                <StackLayout Padding="0" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="12" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"  Text="{Binding Name}"   HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                                    <Grid ColumnSpacing="1" Padding="0" Margin="0,-5,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" HorizontalOptions="Center" VerticalOptions="Start">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="0" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                    <Image Grid.Row="0" WidthRequest="10" Grid.Column="1" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                    <Image Grid.Row="0" WidthRequest="10" Grid.Column="2" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                    <Image Grid.Row="0" WidthRequest="10" Grid.Column="3" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                    <Image Grid.Row="0" WidthRequest="10" Grid.Column="4" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>                                                                    
+                                                                </Grid>
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="11" Margin="0,-5,0,0" Grid.Row="2" Grid.Column="0" Text="{Binding CallRate,StringFormat='Rs {0:F0} / Min'}"  HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                            </StackLayout>
+                                                        </StackLayout>
+
+
+                                                    </pv:PancakeView>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                            </StackLayout>
+                            </ScrollView>
+                        </StackLayout>
+                                </Grid>
+
+                            </ContentView>
+
+                            <ContentView Grid.Row="3" x:Name="AstroExperts"  BackgroundColor="{StaticResource AppColor2}" Margin="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                <Grid Margin="1" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <Grid  Margin="8"   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                                        <StackLayout ClassId="Love_Life_Experts" BackgroundColor="{StaticResource AppGreyishColor}" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="btnExploreAll_Clicked"/>
+                                            </StackLayout.GestureRecognizers>
+                                            <StackLayout Margin="1" BackgroundColor="White"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <pv:PancakeView
+                                                    Grid.Row="0"
+                                        Grid.Column="0" 
+                                        BackgroundColor="DeepPink"
+                                        >
+
+                                                <Image
+                                            Aspect="AspectFit"
+                                            HeightRequest="50"
+                                            Source="love.png"/>
+                                                </pv:PancakeView>
+                                                <Label 
+                                                    Grid.Row="1" FontSize="12"
+                                        Grid.Column="0" TextColor="DarkGray" VerticalTextAlignment="Center"   VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand"                                                 
+                                        Text="Love Life Experts"
+                                        />
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout ClassId="Marriage_Experts" BackgroundColor="{StaticResource AppGreyishColor}" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="btnExploreAll_Clicked"/>
+                                            </StackLayout.GestureRecognizers>
+                                            <StackLayout Margin="1" BackgroundColor="White"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <pv:PancakeView
+                                                    Grid.Row="0"
+                                        Grid.Column="0" 
+                                        BackgroundColor="Orange"
+                                        >
+
+                                                    <Image 
+                                            Aspect="AspectFit"
+                                            HeightRequest="50"
+                                            Source="marriage.png"/>
+                                                </pv:PancakeView>
+                                                <Label
+                                                    Grid.Row="1"
+                                        Grid.Column="0" FontSize="12"
+                                                    TextColor="DarkGray" VerticalTextAlignment="Center" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand"
+                                        Text="Marriage Experts"
+                                        />
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout ClassId="Career_Experts"  BackgroundColor="{StaticResource AppGreyishColor}" Grid.Row="0" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="btnExploreAll_Clicked"/>
+                                            </StackLayout.GestureRecognizers>
+                                            <StackLayout Margin="1" BackgroundColor="White"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <pv:PancakeView
+                                                    Grid.Row="0"
+                                        Grid.Column="0" 
+                                        BackgroundColor="YellowGreen"
+                                        >
+
+                                                    <Image
+                                            Aspect="AspectFit"
+                                            HeightRequest="50"
+                                            Source="career.png"/>
+                                                </pv:PancakeView>
+                                                <Label
+                                                    Grid.Row="1"
+                                        Grid.Column="0" FontSize="12"
+                                                    TextColor="DarkGray" VerticalTextAlignment="Center" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand"
+                                        Text="Career Experts"
+                                        />
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout ClassId="Business_Experts"  BackgroundColor="{StaticResource AppGreyishColor}" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="btnExploreAll_Clicked"/>
+                                            </StackLayout.GestureRecognizers>
+                                            <StackLayout Margin="1" BackgroundColor="White"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <pv:PancakeView
+                                                    Grid.Row="0"
+                                        Grid.Column="0" 
+                                        BackgroundColor="Purple"
+                                        >
+
+                                                    <Image
+                                            Aspect="AspectFit"
+                                            HeightRequest="50"
+                                            Source="business.png"/>
+                                                </pv:PancakeView>
+                                                <Label 
+                                                    Grid.Row="1" FontSize="12"
+                                        Grid.Column="0" TextColor="DarkGray" VerticalTextAlignment="Center"   VerticalOptions="FillAndExpand" HorizontalOptions="Center"                                                 
+                                        Text="Business Experts"
+                                        />
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout ClassId="Investment_Experts" BackgroundColor="{StaticResource AppGreyishColor}" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="btnExploreAll_Clicked"/>
+                                            </StackLayout.GestureRecognizers>
+                                            <StackLayout Margin="1" BackgroundColor="White"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <pv:PancakeView
+                                                    Grid.Row="0"
+                                        Grid.Column="0" 
+                                        BackgroundColor="DeepSkyBlue"
+                                        >
+
+                                                    <Image 
+                                            Aspect="AspectFit"
+                                            HeightRequest="50"
+                                            Source="investment.png"/>
+                                                </pv:PancakeView>
+                                                <Label
+                                                    Grid.Row="1"
+                                        Grid.Column="0" FontSize="12"
+                                                    TextColor="DarkGray" VerticalTextAlignment="Center" VerticalOptions="FillAndExpand" HorizontalOptions="Center"
+                                        Text="Investment Experts"
+                                        />
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout ClassId="Others" BackgroundColor="{StaticResource AppGreyishColor}" Grid.Row="1" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="btnExploreAll_Clicked"/>
+                                            </StackLayout.GestureRecognizers>
+                                            <StackLayout Margin="1" BackgroundColor="White"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <pv:PancakeView
+                                                    Grid.Row="0"
+                                        Grid.Column="0" 
+                                        BackgroundColor="DarkSalmon"
+                                        >
+
+                                                    <Image
+                                            Aspect="AspectFit"
+                                            HeightRequest="50"
+                                            Source="others.png"/>
+                                                </pv:PancakeView>
+                                                <Label
+                                                    Grid.Row="1"
+                                        Grid.Column="0" FontSize="12"
+                                                    TextColor="DarkGray" VerticalTextAlignment="Center" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand"
+                                        Text="Others"
+                                        />
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Grid>
+                                </Grid>
+
+                            </ContentView>
+
+                            <ContentView Grid.Row="4" x:Name="AstroVedic"  BackgroundColor="{StaticResource AppColor2}" Margin="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                <Grid Margin="1" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                                    <StackLayout  Margin="8"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                        <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Image Source="vedas.png" Aspect="AspectFit" Margin="0,8,0,0" WidthRequest="20" HeightRequest="20" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+                                            <Label Grid.ColumnSpan="10" Text="Vedic Experts" Margin="2,8,0,0" TextColor="DarkGray" FontAttributes="Bold" FontSize="15" Grid.Row="0" Grid.Column="1"></Label>
+
+
+                                        </Grid>
+                                        <Button ClassId="Vedic_Experts" ImageSource="btnsearch.png" Margin="0,-40,0,0" x:Name="btnVedicExploreAll" Clicked="btnExploreAll_Clicked" FontSize="11" BackgroundColor="{StaticResource AppButtonColor}" TextColor="White" Text="View More" FontAttributes="Bold" WidthRequest="120" HeightRequest="35"  CornerRadius="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="End"></Button>
+                                        <ScrollView   Orientation="Horizontal" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout  x:Name="CurrentAstroVedic"   BindableLayout.ItemsSource="{Binding Path=Astrologers}" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <!--<StackLayout.GestureRecognizers>                                                
+                                                <TapGestureRecognizer Command="{Binding AstroTop_Clicked}" CommandParameter="{Binding Id}"/>
+                                            </StackLayout.GestureRecognizers>-->
+                                                <BindableLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <pv:PancakeView Padding="0"  BackgroundColor="{StaticResource AppGreyishColor}"  Margin="3"   WidthRequest="120" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                            <StackLayout BackgroundColor="White" Margin="1" Padding="0"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                                <StackLayout.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                </StackLayout.GestureRecognizers>
+                                                                <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                                    <Image Grid.Row="0" Grid.Column="0" Margin="3" HeightRequest="120" WidthRequest="120"  Source="{Binding ProfilePicURL}"  Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="End"/>
+
+                                                                    <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                        <BoxView BackgroundColor="White" Opacity="0"/>
+
+                                                                    </pv:PancakeView>
+                                                                    <StackLayout>
+                                                                        <ImageButton x:Name="btnCall" Source="call.png"  Aspect="AspectFit" HeightRequest="30" Margin="0,5,5,0" HorizontalOptions="End" VerticalOptions="End" Clicked="btnCall_Clicked"></ImageButton>
+                                                                    </StackLayout>
+                                                                </Grid>
+                                                                <StackLayout Padding="0" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="12" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"  Text="{Binding Name}"   HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                                    <Grid ColumnSpacing="1" Padding="0" Margin="0,-5,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" HorizontalOptions="Center" VerticalOptions="Start">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="0" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="1" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="2" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="3" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="4" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                    </Grid>
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="11" Margin="0,-5,0,0" Grid.Row="2" Grid.Column="0" Text="{Binding CallRate,StringFormat='Rs {0:F0} / Min'}"  HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                                </StackLayout>
+                                                            </StackLayout>
+
+
+                                                        </pv:PancakeView>
+                                                    </DataTemplate>
+                                                </BindableLayout.ItemTemplate>
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </StackLayout>
+                                </Grid>
+
+                            </ContentView>
+
+                            <ContentView Grid.Row="5" x:Name="AstroTarot"  BackgroundColor="{StaticResource AppColor2}" Margin="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                <Grid Margin="1" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                                    <StackLayout  Margin="8"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                        <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Image Source="tarot.png" Aspect="Fill" Margin="0,8,0,0" WidthRequest="20" HeightRequest="20" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+                                            <Label Grid.ColumnSpan="10" Text="Tarot Readers" Margin="2,8,0,0" TextColor="DarkGray" FontAttributes="Bold" FontSize="15" Grid.Row="0" Grid.Column="1"></Label>
+
+
+                                        </Grid>
+                                        <Button ClassId="Tarot_Readers" ImageSource="btnsearch.png" Margin="0,-40,0,0" x:Name="btnTarotExploreAll" Clicked="btnExploreAll_Clicked" FontSize="11" BackgroundColor="{StaticResource AppButtonColor}" TextColor="White" Text="View More" FontAttributes="Bold" WidthRequest="120" HeightRequest="35"  CornerRadius="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="End"></Button>
+                                        <ScrollView   Orientation="Horizontal" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout  x:Name="CurrentAstroTarot"   BindableLayout.ItemsSource="{Binding Path=Astrologers}" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <!--<StackLayout.GestureRecognizers>                                                
+                                                <TapGestureRecognizer Command="{Binding AstroTop_Clicked}" CommandParameter="{Binding Id}"/>
+                                            </StackLayout.GestureRecognizers>-->
+                                                <BindableLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <pv:PancakeView Padding="0"  BackgroundColor="{StaticResource AppGreyishColor}"  Margin="3"   WidthRequest="120" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                            <StackLayout BackgroundColor="White" Margin="1" Padding="0"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                                <StackLayout.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                </StackLayout.GestureRecognizers>
+                                                                <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                                    <Image Grid.Row="0" Grid.Column="0" Margin="3" HeightRequest="120" WidthRequest="120"  Source="{Binding ProfilePicURL}"  Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="End"/>
+
+                                                                    <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                        <BoxView BackgroundColor="White" Opacity="0"/>
+
+                                                                    </pv:PancakeView>
+                                                                    <StackLayout>
+                                                                        <ImageButton x:Name="btnCall" Source="call.png"  Aspect="AspectFit" HeightRequest="30" Margin="0,5,5,0" HorizontalOptions="End" VerticalOptions="End" Clicked="btnCall_Clicked"></ImageButton>
+                                                                    </StackLayout>
+                                                                </Grid>
+                                                                <StackLayout Padding="0" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="12" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"  Text="{Binding Name}"   HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                                    <Grid ColumnSpacing="1" Padding="0" Margin="0,-5,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" HorizontalOptions="Center" VerticalOptions="Start">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="0" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="1" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="2" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="3" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="4" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                    </Grid>
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="11" Margin="0,-5,0,0" Grid.Row="2" Grid.Column="0" Text="{Binding CallRate,StringFormat='Rs {0:F0} / Min'}"  HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                                </StackLayout>
+                                                            </StackLayout>
+
+
+                                                        </pv:PancakeView>
+                                                    </DataTemplate>
+                                                </BindableLayout.ItemTemplate>
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </StackLayout>
+                                </Grid>
+
+                            </ContentView>
+
+                            <ContentView Grid.Row="6" x:Name="AstroNumerology"  BackgroundColor="{StaticResource AppColor2}" Margin="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                <Grid Margin="1" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                                    <StackLayout  Margin="8"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                        <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Image Source="numerology.png" Aspect="Fill" Margin="0,8,0,0" WidthRequest="20" HeightRequest="20" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+                                            <Label Grid.ColumnSpan="10" Text="Numerology Experts" Margin="2,8,0,0" TextColor="DarkGray" FontAttributes="Bold" FontSize="15" Grid.Row="0" Grid.Column="1"></Label>
+
+
+                                        </Grid>
+                                        <Button ClassId="Numerology_Experts" ImageSource="btnsearch.png" Margin="0,-40,0,0" x:Name="btnNumerologyExploreAll" Clicked="btnExploreAll_Clicked" FontSize="11" BackgroundColor="{StaticResource AppButtonColor}" TextColor="White" Text="View More" FontAttributes="Bold" WidthRequest="120" HeightRequest="35"  CornerRadius="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="End"></Button>
+                                        <ScrollView   Orientation="Horizontal" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout  x:Name="CurrentAstroNumerology"   BindableLayout.ItemsSource="{Binding Path=Astrologers}" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <!--<StackLayout.GestureRecognizers>                                                
+                                                <TapGestureRecognizer Command="{Binding AstroTop_Clicked}" CommandParameter="{Binding Id}"/>
+                                            </StackLayout.GestureRecognizers>-->
+                                                <BindableLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <pv:PancakeView Padding="0"  BackgroundColor="{StaticResource AppGreyishColor}"  Margin="3"   WidthRequest="120" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                            <StackLayout BackgroundColor="White" Margin="1" Padding="0"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                                <StackLayout.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                </StackLayout.GestureRecognizers>
+                                                                <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                                    <Image Grid.Row="0" Grid.Column="0" Margin="3" HeightRequest="120" WidthRequest="120"  Source="{Binding ProfilePicURL}"  Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="End"/>
+
+                                                                    <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                        <BoxView BackgroundColor="White" Opacity="0"/>
+
+                                                                    </pv:PancakeView>
+                                                                    <StackLayout>
+                                                                        <ImageButton x:Name="btnCall" Source="call.png"  Aspect="AspectFit" HeightRequest="30" Margin="0,5,5,0" HorizontalOptions="End" VerticalOptions="End" Clicked="btnCall_Clicked"></ImageButton>
+                                                                    </StackLayout>
+                                                                </Grid>
+                                                                <StackLayout Padding="0" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="12" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"  Text="{Binding Name}"   HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                                    <Grid ColumnSpacing="1" Padding="0" Margin="0,-5,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" HorizontalOptions="Center" VerticalOptions="Start">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="0" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="1" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="2" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="3" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="4" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                    </Grid>
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="11" Margin="0,-5,0,0" Grid.Row="2" Grid.Column="0" Text="{Binding CallRate,StringFormat='Rs {0:F0} / Min'}"  HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                                </StackLayout>
+                                                            </StackLayout>
+
+
+                                                        </pv:PancakeView>
+                                                    </DataTemplate>
+                                                </BindableLayout.ItemTemplate>
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </StackLayout>
+                                </Grid>
+
+                            </ContentView>
+
+                            <ContentView Grid.Row="7" x:Name="AstroVaastu"  BackgroundColor="{StaticResource AppColor2}" Margin="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                <Grid Margin="1" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                                    <StackLayout  Margin="8"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                        <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Image Source="vaastu.png" Aspect="Fill" Margin="0,8,0,0" WidthRequest="20" HeightRequest="20" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+                                            <Label Grid.ColumnSpan="10" Text="Vaastu Experts" Margin="2,8,0,0" TextColor="DarkGray" FontAttributes="Bold" FontSize="15" Grid.Row="0" Grid.Column="1"></Label>
+
+
+                                        </Grid>
+                                        <Button ClassId="Vaastu_Experts" ImageSource="btnsearch.png" Margin="0,-40,0,0" x:Name="btnVaastuExploreAll" Clicked="btnExploreAll_Clicked" FontSize="11" BackgroundColor="{StaticResource AppButtonColor}" TextColor="White" Text="View More" FontAttributes="Bold" WidthRequest="120" HeightRequest="35"  CornerRadius="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="End"></Button>
+                                        <ScrollView   Orientation="Horizontal" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout  x:Name="CurrentAstroVaastu"   BindableLayout.ItemsSource="{Binding Path=Astrologers}" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <!--<StackLayout.GestureRecognizers>                                                
+                                                <TapGestureRecognizer Command="{Binding AstroTop_Clicked}" CommandParameter="{Binding Id}"/>
+                                            </StackLayout.GestureRecognizers>-->
+                                                <BindableLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <pv:PancakeView Padding="0"  BackgroundColor="{StaticResource AppGreyishColor}"  Margin="3"   WidthRequest="120" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                            <StackLayout BackgroundColor="White" Margin="1" Padding="0"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                                <StackLayout.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                </StackLayout.GestureRecognizers>
+                                                                <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                                    <Image Grid.Row="0" Grid.Column="0" Margin="3" HeightRequest="120" WidthRequest="120"  Source="{Binding ProfilePicURL}"  Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="End"/>
+
+                                                                    <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                        <BoxView BackgroundColor="White" Opacity="0"/>
+
+                                                                    </pv:PancakeView>
+                                                                    <StackLayout>
+                                                                        <ImageButton x:Name="btnCall" Source="call.png"  Aspect="AspectFit" HeightRequest="30" Margin="0,5,5,0" HorizontalOptions="End" VerticalOptions="End" Clicked="btnCall_Clicked"></ImageButton>
+                                                                    </StackLayout>
+                                                                </Grid>
+                                                                <StackLayout Padding="0" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="12" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"  Text="{Binding Name}"   HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                                    <Grid ColumnSpacing="1" Padding="0" Margin="0,-5,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" HorizontalOptions="Center" VerticalOptions="Start">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="0" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="1" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="2" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="3" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="4" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                    </Grid>
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="11" Margin="0,-5,0,0" Grid.Row="2" Grid.Column="0" Text="{Binding CallRate,StringFormat='Rs {0:F0} / Min'}"  HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                                </StackLayout>
+                                                            </StackLayout>
+
+
+                                                        </pv:PancakeView>
+                                                    </DataTemplate>
+                                                </BindableLayout.ItemTemplate>
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </StackLayout>
+                                </Grid>
+
+                            </ContentView>
+
+                            <ContentView Grid.Row="8" x:Name="AstroKP"  BackgroundColor="{StaticResource AppColor2}" Margin="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                <Grid Margin="1" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                                    <StackLayout  Margin="8"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                        <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Image Source="kp.png" Aspect="Fill" Margin="0,8,0,0" WidthRequest="20" HeightRequest="20" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+                                            <Label Grid.ColumnSpan="10" Text="KP Experts" Margin="2,8,0,0" TextColor="DarkGray" FontAttributes="Bold" FontSize="15" Grid.Row="0" Grid.Column="1"></Label>
+
+
+                                        </Grid>
+                                        <Button ClassId="KP_Experts" ImageSource="btnsearch.png" Margin="0,-40,0,0" x:Name="btnKPExploreAll" Clicked="btnExploreAll_Clicked" FontSize="11" BackgroundColor="{StaticResource AppButtonColor}" TextColor="White" Text="View More" FontAttributes="Bold" WidthRequest="120" HeightRequest="35"  CornerRadius="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="End"></Button>
+                                        <ScrollView   Orientation="Horizontal" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout  x:Name="CurrentAstroKP"   BindableLayout.ItemsSource="{Binding Path=Astrologers}" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <!--<StackLayout.GestureRecognizers>                                                
+                                                <TapGestureRecognizer Command="{Binding AstroTop_Clicked}" CommandParameter="{Binding Id}"/>
+                                            </StackLayout.GestureRecognizers>-->
+                                                <BindableLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <pv:PancakeView Padding="0"  BackgroundColor="{StaticResource AppGreyishColor}"  Margin="3"   WidthRequest="120" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                            <StackLayout BackgroundColor="White" Margin="1" Padding="0"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                                <StackLayout.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                </StackLayout.GestureRecognizers>
+                                                                <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                                    <Image Grid.Row="0" Grid.Column="0" Margin="3" HeightRequest="120" WidthRequest="120"  Source="{Binding ProfilePicURL}"  Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="End"/>
+
+                                                                    <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                        <BoxView BackgroundColor="White" Opacity="0"/>
+
+                                                                    </pv:PancakeView>
+                                                                    <StackLayout>
+                                                                        <ImageButton x:Name="btnCall" Source="call.png"  Aspect="AspectFit" HeightRequest="30" Margin="0,5,5,0" HorizontalOptions="End" VerticalOptions="End" Clicked="btnCall_Clicked"></ImageButton>
+                                                                    </StackLayout>
+                                                                </Grid>
+                                                                <StackLayout Padding="0" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="12" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"  Text="{Binding Name}"   HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                                    <Grid ColumnSpacing="1" Padding="0" Margin="0,-5,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" HorizontalOptions="Center" VerticalOptions="Start">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="0" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="1" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="2" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="3" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="4" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                    </Grid>
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="11" Margin="0,-5,0,0" Grid.Row="2" Grid.Column="0" Text="{Binding CallRate,StringFormat='Rs {0:F0} / Min'}"  HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                                </StackLayout>
+                                                            </StackLayout>
+
+
+                                                        </pv:PancakeView>
+                                                    </DataTemplate>
+                                                </BindableLayout.ItemTemplate>
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </StackLayout>
+                                </Grid>
+
+                            </ContentView>
+
+                            <ContentView Grid.Row="9" x:Name="AstroKundali"  BackgroundColor="{StaticResource AppColor2}" Margin="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                <Grid Margin="1" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                                    <StackLayout  Margin="8"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                        <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Image Source="kundli.png" Aspect="Fill" Margin="0,8,0,0" WidthRequest="20" HeightRequest="20" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+                                            <Label Grid.ColumnSpan="10" Text="Prashna Kundali Experts" Margin="2,8,0,0" TextColor="DarkGray" FontAttributes="Bold" FontSize="15" Grid.Row="0" Grid.Column="1"></Label>
+
+
+                                        </Grid>
+                                        <Button ClassId="Prashna_Kundali_Experts" ImageSource="btnsearch.png" Margin="0,-40,0,0" x:Name="btnKundaliExploreAll" Clicked="btnExploreAll_Clicked" FontSize="11" BackgroundColor="{StaticResource AppButtonColor}" TextColor="White" Text="View More" FontAttributes="Bold" WidthRequest="120" HeightRequest="35"  CornerRadius="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="End"></Button>
+                                        <ScrollView   Orientation="Horizontal" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout  x:Name="CurrentAstroKundali"   BindableLayout.ItemsSource="{Binding Path=Astrologers}" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <!--<StackLayout.GestureRecognizers>                                                
+                                                <TapGestureRecognizer Command="{Binding AstroTop_Clicked}" CommandParameter="{Binding Id}"/>
+                                            </StackLayout.GestureRecognizers>-->
+                                                <BindableLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <pv:PancakeView Padding="0"  BackgroundColor="{StaticResource AppGreyishColor}"  Margin="3"   WidthRequest="120" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                            <StackLayout BackgroundColor="White" Margin="1" Padding="0"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                                <StackLayout.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                </StackLayout.GestureRecognizers>
+                                                                <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                                                    <Image Grid.Row="0" Grid.Column="0" Margin="3" HeightRequest="120" WidthRequest="120"  Source="{Binding ProfilePicURL}"  Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="End"/>
+
+                                                                    <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                        <BoxView BackgroundColor="White" Opacity="0"/>
+
+                                                                    </pv:PancakeView>
+                                                                    <StackLayout>
+                                                                        <ImageButton x:Name="btnCall" Source="call.png"  Aspect="AspectFit" HeightRequest="30" Margin="0,5,5,0" HorizontalOptions="End" VerticalOptions="End" Clicked="btnCall_Clicked"></ImageButton>
+                                                                    </StackLayout>
+                                                                </Grid>
+                                                                <StackLayout Padding="0" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="12" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"  Text="{Binding Name}"   HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                                    <Grid ColumnSpacing="1" Padding="0" Margin="0,-5,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" HorizontalOptions="Center" VerticalOptions="Start">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="0" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="1" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="2" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="3" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                        <Image Grid.Row="0" WidthRequest="10" Grid.Column="4" Source="rating.png" Aspect="AspectFit" HeightRequest="10" ></Image>
+                                                                    </Grid>
+                                                                    <Label Padding="0" TextColor="DarkGray" FontSize="11" Margin="0,-5,0,0" Grid.Row="2" Grid.Column="0" Text="{Binding CallRate,StringFormat='Rs {0:F0} / Min'}"  HorizontalOptions="Center" VerticalOptions="Start"></Label>
+                                                                </StackLayout>
+                                                            </StackLayout>
+
+
+                                                        </pv:PancakeView>
+                                                    </DataTemplate>
+                                                </BindableLayout.ItemTemplate>
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </StackLayout>
+                                </Grid>
+
+                            </ContentView>
+
+                            <StackLayout BackgroundColor="{StaticResource AppColor2}" Margin="5"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <StackLayout BackgroundColor="White" Margin="1"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <StackLayout x:Name="cvAstroHead" Margin="15,10">
+                                        <Label Text="Top 3 Trending Now" FontAttributes="Bold" FontSize="15" TextColor="DarkGray"></Label>
+                                    </StackLayout>
+                                    <CarouselView x:Name="cvAstro"  Margin="5,0,5,5" ItemsSource="{Binding Astrologers}" HeightRequest="200" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <CarouselView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid x:Name="FrontView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                        <Grid.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="FlipToBack"/>
+                                                        </Grid.GestureRecognizers>
+                                                        <pv:PancakeView CornerRadius="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                <Image Source="{Binding ProfilePicURL}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                                <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                    <pv:PancakeView.BackgroundGradientStops>
+                                                                        <pv:GradientStopCollection>
+                                                                            <pv:GradientStop Color="Transparent" Offset="0"/>
+                                                                            <pv:GradientStop Color="Transparent" Offset="1"/>
+                                                                            <pv:GradientStop Color="Transparent" Offset="1"/>
+                                                                            <pv:GradientStop Color="Transparent" Offset="1"/>
+                                                                            <pv:GradientStop Color="Transparent" Offset="0"/>
+                                                                        </pv:GradientStopCollection>
+                                                                    </pv:PancakeView.BackgroundGradientStops>
+                                                                    <Grid>
+                                                                        <StackLayout Grid.Row="0" Grid.Column="0" HeightRequest="30"  HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent">
+                                                                            <ImageButton Margin="5,5,0,0" Clicked="btnCall_Clicked" Source="conversation.png" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" Aspect="AspectFill" HeightRequest="30"></ImageButton>                                                                            
+                                                                        </StackLayout>
+                                                                        <StackLayout Grid.Row="0" Grid.Column="0" HeightRequest="30"  HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent">
+                                                                            <ImageButton Margin="0,5,5,0" Clicked="btnCall_Clicked"  Source="call.png" Aspect="AspectFill" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HeightRequest="30"></ImageButton>
+                                                                        </StackLayout>
+                                                                        <StackLayout Margin="0,100,0,0" HorizontalOptions="Start" VerticalOptions="End">
+                                                                            <Label Margin="20,5,20,-20" Text="{Binding Name}" FontSize="15" FontAttributes="Bold" TextColor="White"/>
+                                                                            <Grid Margin="20,15,0,0" HorizontalOptions="Start" VerticalOptions="Start">
+                                                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                                    <Image Source="rating.png" Aspect="AspectFit" HeightRequest="15"></Image>
+                                                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                                        <Image Source="rating.png" Aspect="AspectFit" HeightRequest="15"></Image>
+                                                                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                                            <Image Source="rating.png" Aspect="AspectFit" HeightRequest="15"></Image>
+                                                                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                                                <Image Source="rating.png" Aspect="AspectFit" HeightRequest="15"></Image>
+                                                                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                                                    <Image Source="rating.png" Aspect="AspectFit" HeightRequest="15"></Image>
+                                                                                                </StackLayout>
+                                                                                            </StackLayout>
+                                                                                        </StackLayout>
+                                                                                    </StackLayout>
+                                                                                </StackLayout>
+                                                                            </Grid>
+                                                                            <Label Margin="20,0,20,0" Text="{Binding CallRate,StringFormat='Rs {0:F0} / Min'}" FontSize="12" TextColor="White"/>
+
+
+
+                                                                        </StackLayout>
+                                                                    </Grid>
+                                                                </pv:PancakeView>
+                                                            </Grid>
+                                                        </pv:PancakeView>
+                                                    </Grid>
+                                                    <Grid x:Name="BackView" IsVisible="False">
+
+                                                        <pv:PancakeView CornerRadius="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                <Image Source="{Binding ProfilePicURL}" RotationY="180" Aspect="AspectFill" HorizontalOptions="FillAndExpand" 
+                                                   VerticalOptions="FillAndExpand"/>
+                                                                <BoxView BackgroundColor="White" Opacity="0.9"/>
+                                                                <ScrollView  VerticalScrollBarVisibility="Never" MinimumHeightRequest="800"  Orientation="Vertical">
+                                                                    <Grid>
+                                                                        <Grid.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="FlipToFront"/>
+                                                                        </Grid.GestureRecognizers>
+                                                                        <StackLayout Margin="20" Spacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="800" Orientation="Vertical">
+                                                                            <Label Text="{Binding Name}" FontSize="13" FontAttributes="Bold" TextColor="Black"/>
+                                                                            <Label Text="{Binding ProfileSummary}" FontSize="15" TextColor="Black"/>
+                                                                        </StackLayout>
+                                                                    </Grid>
+                                                                </ScrollView>
+                                                            </Grid>
+                                                        </pv:PancakeView>
+                                                    </Grid>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CarouselView.ItemTemplate>
+                                    </CarouselView>
+                                </StackLayout>
+                            </StackLayout>
+                            <ContentView Grid.Row="4" x:Name="AstroHoroscope"  BackgroundColor="{StaticResource AppColor2}" Margin="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                <Grid Margin="1" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                                    <StackLayout x:Name="ExpertView" Margin="0,10,0,0"
+                
+                Padding="0, 6, 0, 0">
+                                        <Grid
+                                ColumnSpacing="0" x:Name="ExpanderGrid">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout 
+                                    Grid.Column="1"                                    
+                                    Spacing="0" Margin="3">
+                                                <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                    <Image Source="horoscope.png" Aspect="Fill"  WidthRequest="20" HeightRequest="20" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+                                                    <Label Grid.ColumnSpan="10" Text="Horoscope 2020" TextColor="DarkGray" FontAttributes="Bold" FontSize="15" Grid.Row="0" Grid.Column="1"></Label>
+
+
+                                                </Grid>
+                                                <ContentView>
+
+                                                    <Grid 
+                                                ColumnSpacing="0"
+                                                RowSpacing="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="*" />
+                                                            <RowDefinition Height="Auto" />
+                                                        </Grid.RowDefinitions>
+
+                                                        <StackLayout  Spacing="0"
+         BackgroundColor="White"
+         Orientation="Vertical"
+         HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+
+                                                            <ScrollView HorizontalScrollBarVisibility="Never" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                    <!--<StackLayout.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="{Binding AstroTop_Clicked}" CommandParameter="{Binding Id}"/>
+                                                                        </StackLayout.GestureRecognizers>-->
+                                                                        <Grid ClassId="ARIES" x:Name="ImgList">
+                                                                                <Grid.GestureRecognizers>
+                                                                                    <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                                </Grid.GestureRecognizers>
+                                                                                <Grid.RowDefinitions>
+                                                                                    <RowDefinition Height="100"/>
+                                                                                    <RowDefinition Height="*"/>
+                                                                                </Grid.RowDefinitions>
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="120" />
+                                                                                    <ColumnDefinition Width="*" />
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <ci:CircleImage Margin="10,5,0,0" Grid.Row="0"   Grid.Column="0"
+            HeightRequest="100" BorderColor="#F99D60" BorderThickness="3"   
+            WidthRequest="120"   
+            Source="aries"   
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+
+                                                                                <Label Text="ARIES" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
+
+
+                                                                            </Grid>
+                                                                    <Grid ClassId="TAURUS">
+                                                                        <Grid.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                        </Grid.GestureRecognizers>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="100"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="120" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <ci:CircleImage Margin="10,5,0,0" Grid.Row="0"   Grid.Column="0"
+            HeightRequest="100" BorderColor="#F99D60" BorderThickness="3"   
+            WidthRequest="120"   
+            Source="taurus"   
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+
+                                                                        <Label Text="TAURUS" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
+
+
+                                                                    </Grid>
+                                                                    <Grid ClassId="GEMINI">
+                                                                        <Grid.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                        </Grid.GestureRecognizers>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="100"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="120" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <ci:CircleImage Margin="10,5,0,0" Grid.Row="0"   Grid.Column="0"
+            HeightRequest="100" BorderColor="#F99D60" BorderThickness="3"   
+            WidthRequest="120"   
+            Source="gemini"   
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+
+                                                                        <Label Text="GEMINI" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
+
+
+                                                                    </Grid>
+                                                                    <Grid ClassId="CANCER">
+                                                                        <Grid.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                        </Grid.GestureRecognizers>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="100"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="120" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <ci:CircleImage Margin="10,5,0,0" Grid.Row="0"   Grid.Column="0"
+            HeightRequest="100" BorderColor="#F99D60" BorderThickness="3"   
+            WidthRequest="120"   
+            Source="cancer"   
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+
+                                                                        <Label Text="CANCER" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
+
+
+                                                                    </Grid>
+                                                                    <Grid ClassId="LEO">
+                                                                        <Grid.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                        </Grid.GestureRecognizers>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="100"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="120" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <ci:CircleImage Margin="10,5,0,0" Grid.Row="0"   Grid.Column="0"
+            HeightRequest="100" BorderColor="#F99D60" BorderThickness="3"   
+            WidthRequest="120"   
+            Source="leo"   
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+
+                                                                        <Label Text="LEO" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
+
+
+                                                                    </Grid>
+                                                                    <Grid ClassId="VIRGO">
+                                                                        <Grid.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                        </Grid.GestureRecognizers>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="100"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="120" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <ci:CircleImage Margin="10,5,0,0" Grid.Row="0"   Grid.Column="0"
+            HeightRequest="100" BorderColor="#F99D60" BorderThickness="3"   
+            WidthRequest="120"   
+            Source="virgo"   
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+
+                                                                        <Label Text="VIRGO" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
+
+
+                                                                    </Grid>
+                                                                    <Grid ClassId="LIBRA">
+                                                                        <Grid.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                        </Grid.GestureRecognizers>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="100"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="120" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <ci:CircleImage Margin="10,5,0,0" Grid.Row="0"   Grid.Column="0"
+            HeightRequest="100" BorderColor="#F99D60" BorderThickness="3"   
+            WidthRequest="120"   
+            Source="libra"   
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+
+                                                                        <Label Text="LIBRA" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
+
+
+                                                                    </Grid>
+                                                                    <Grid ClassId="SCORPIO">
+                                                                        <Grid.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                        </Grid.GestureRecognizers>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="100"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="120" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <ci:CircleImage Margin="10,5,0,0" Grid.Row="0"   Grid.Column="0"
+            HeightRequest="100" BorderColor="#F99D60" BorderThickness="3"   
+            WidthRequest="120"   
+            Source="scorpio"   
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+
+                                                                        <Label Text="SCORPIO" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
+
+
+                                                                    </Grid>
+                                                                    <Grid ClassId="SAGITTARIUS">
+                                                                        <Grid.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                        </Grid.GestureRecognizers>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="100"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="120" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <ci:CircleImage Margin="10,5,0,0" Grid.Row="0"   Grid.Column="0"
+            HeightRequest="100" BorderColor="#F99D60" BorderThickness="3"   
+            WidthRequest="120"   
+            Source="sagittarius"   
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+
+                                                                        <Label Text="SAGITTARIUS" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
+
+
+                                                                    </Grid>
+                                                                    <Grid ClassId="CAPRICORN">
+                                                                        <Grid.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                        </Grid.GestureRecognizers>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="100"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="120" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <ci:CircleImage Margin="10,5,0,0" Grid.Row="0"   Grid.Column="0"
+            HeightRequest="100" BorderColor="#F99D60" BorderThickness="3"   
+            WidthRequest="120"   
+            Source="capricorn"   
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+
+                                                                        <Label Text="CAPRICORN" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
+
+
+                                                                    </Grid>
+                                                                    <Grid ClassId="AQUARIUS">
+                                                                        <Grid.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                        </Grid.GestureRecognizers>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="100"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="120" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <ci:CircleImage Margin="10,5,0,0" Grid.Row="0"   Grid.Column="0"
+            HeightRequest="100" BorderColor="#F99D60" BorderThickness="3"   
+            WidthRequest="120"   
+            Source="aquarius"   
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+
+                                                                        <Label Text="AQUARIUS" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
+
+
+                                                                    </Grid>
+                                                                    <Grid ClassId="PISCES">
+                                                                        <Grid.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="AstroTop_Clicked" CommandParameter="{Binding Id}"/>
+                                                                        </Grid.GestureRecognizers>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="100"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="120" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <ci:CircleImage Margin="10,5,0,0" Grid.Row="0"   Grid.Column="0"
+            HeightRequest="100" BorderColor="#F99D60" BorderThickness="3"   
+            WidthRequest="120"   
+            Source="pisces"   
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+
+                                                                        <Label Text="PISCES" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
+
+
+                                                                    </Grid>
+                                                                </StackLayout>
+                                                            </ScrollView>
+                                                        </StackLayout>
+
+                                                    </Grid>
+
+                                                </ContentView>
+                                            </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                </Grid>
+                            </ContentView>
+                        </StackLayout>
+                
+            </Grid>
+        </ScrollView>
+        
+    </Grid>
+           
+            <!--<StackLayout 
+             AbsoluteLayout.LayoutFlags="All"
+             AbsoluteLayout.LayoutBounds="0.94,1.33,1.1,0.25">
+
+            <StackLayout HorizontalOptions="End" VerticalOptions="End" Margin="0,0,0,0">
+                <ImageButton Source="exit.png" x:Name="insertTaak"  HeightRequest="50" WidthRequest="50" />
+            </StackLayout>
+
+        </StackLayout>-->
+    </AbsoluteLayout>
+        <RelativeLayout VerticalOptions="End" HorizontalOptions="FillAndExpand" HeightRequest="38" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
+            <Grid  ColumnSpacing="0" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" HeightRequest="38" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">                
+                <Button ImageSource="btnhome.png" x:Name="btnHome" Clicked="btnHome_Clicked" Grid.Column="0" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold" HeightRequest="38" Text="Home" FontSize="11" Margin="0,1,1,0" BackgroundColor="{StaticResource AppButtonColor}" TextColor="White"></Button>
+                <Button ImageSource="btnuser.png" x:Name="btnAccount" Clicked="btnAccount_Clicked" Grid.Column="1" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold" HeightRequest="38" Text="My Account" FontSize="11" Margin="0,1,1,0" BackgroundColor="{StaticResource AppButtonColor}" TextColor="White"></Button>
+                <Button ImageSource="btnwallet.png" x:Name="btnWallet" Clicked="btnWallet_Clicked"  Grid.Column="2"  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold" HeightRequest="38" Text="My Wallet" FontSize="11" Margin="0,1,1,0" BackgroundColor="{StaticResource AppButtonColor}" TextColor="White"></Button>
+                <!--<ImageButton Source="exit.png" x:Name="insertTaak"  Grid.Column="3"  HeightRequest="50" WidthRequest="50" />-->
+            </Grid>
+        </RelativeLayout>
+    </StackLayout>
+    
+</controls:AnimationPage>

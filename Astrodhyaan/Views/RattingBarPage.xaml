@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:customcontrol="clr-namespace:Astrodhyaan.Views.CustomControls"
+             x:Class="Astrodhyaan.Views.RattingBarPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <Label Text="Custom Ratting Bar Demo" HorizontalTextAlignment="Center" />
+            <customcontrol:RattingBar x:Name="customRattingBar" HorizontalOptions="Center"  ImageWidth="25" ImageHeight="25"     Command="{Binding rattingBarCommand}" SelectedStarValue="3"   FillStarImage="fillstar" EmptyStarImage="emptystar"   />
+            <Label Text="{Binding SelectedStar}"  HorizontalTextAlignment="Center" />
+            <Button Command="{Binding clickCommand}"  CommandParameter="{x:Reference Name=customRattingBar}" Text="Click me" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

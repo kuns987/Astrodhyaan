@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:AnimationPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:controls="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Astrodhyaan.Views.Forms.AstrologerReview"
+             xmlns:ci="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+    <controls:AnimationPage.PageAnimation>
+        <controls:SlidePageAnimation Duration="Medium" Type="Slide" Subtype="FromRight"  />
+    </controls:AnimationPage.PageAnimation>
+    <NavigationPage.TitleView>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <WebView HorizontalOptions="Start" VerticalOptions="FillAndExpand" Grid.Column="0" x:Name="webViewGIF" BackgroundColor="#fef4e1" Margin="-20,2,0,0"  Source="http://astrodhaam.com/demo/index.html"  
+            WidthRequest="70" HeightRequest="60">
+            </WebView>
+            <Label Grid.ColumnSpan="3" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Text="{Binding Name, StringFormat='{0} Reviews'}" TextColor="DarkGray" FontSize="18" Margin="-20,0,0,0" FontAttributes="Bold"></Label>
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+        <ListView  x:Name="MyListView" Margin="0,10,0,0"
+            ItemsSource="{Binding AstrologerReviewList}"
+            ItemTapped="Handle_ItemTapped"
+            CachingStrategy="RecycleElement" SeparatorVisibility="None"
+              >
+            <ListView.RowHeight>
+                <OnPlatform x:TypeArguments="x:Int32">
+                    <On Platform="iOS, Android" Value="150" />
+                    <On Platform="UWP" Value="160" />
+                </OnPlatform>
+            </ListView.RowHeight>
+                
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ContentView Padding="5" BackgroundColor="{StaticResource AppColor4}">
+                            <Frame OutlineColor="LightGray" CornerRadius="10"
+                               Padding="10">
+                                <StackLayout Orientation="Horizontal">
+                                    <Grid Grid.Row="0"   Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                        <ci:CircleImage Grid.Row="0" Grid.Column="0" Margin="10,5,0,0" 
+            HeightRequest="70" BorderColor="{StaticResource AppButtonColor}" BorderThickness="3"    
+            WidthRequest="70"   
+            Source="{Binding ProfilePicURL}" 
+            Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="FillAndExpand"></ci:CircleImage>
+
+                                        <Label Grid.Row="0" Grid.Column="0"  Margin="-255,0,0,0"    FontSize="30" FontAttributes="Bold" Text="{Binding Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                                        </Grid>
+                                        <Grid Grid.Row="3" Grid.Column="0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                            <Image Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" Source="rating.png" Aspect="AspectFill" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" VerticalOptions="Start"></Image>
+                                            <Label Grid.Row="0" Grid.Column="1" Margin="-50,0,0,0"  Grid.ColumnSpan="3"     FontSize="16" FontAttributes="Bold" Text="{Binding Rating,StringFormat='{0:F2}'}" TextColor="LightGray" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"></Label>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Grid.Row="0"  Margin="-250,0,0,0" Grid.ColumnSpan="4" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+                                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"  HeightRequest="45" TextColor="LightGray" FontAttributes="Bold"   Text="{Binding ReviewDate, StringFormat='{0:dddd, MMMM dd, yyyy}'}" 
+                                           FontSize="14"
+                                           VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                        <Label Grid.Row="1" Margin="0,-20,0,0" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="45"  Text="{Binding Review}" 
+                                           FontSize="14"
+                                           VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                        <Frame Grid.Row="2" HeightRequest="100"  Grid.Column="0" Grid.ColumnSpan="3"  OutlineColor="{StaticResource AppDarkColor}"
+                               Padding="0" CornerRadius="10">
+                                            <StackLayout BindableLayout.ItemsSource="{Binding Path=AstrologerReviewList}">
+                                                <BindableLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Label Margin="0,10,10,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"  HeightRequest="45"  Text="{Binding Review}" 
+                                           FontSize="14"
+                                           VerticalOptions="Center" HorizontalOptions="End"/>
+                                                    </DataTemplate>
+                                                </BindableLayout.ItemTemplate>
+
+                                            </StackLayout>
+
+                </Frame>
+                                        <!--<Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="45"  Text="{Binding Review}" 
+                                           FontSize="14"
+                                           VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>-->
+                                    </Grid>                                    
+                                </StackLayout>
+                            </Frame>
+                        </ContentView>                        
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</controls:AnimationPage>
